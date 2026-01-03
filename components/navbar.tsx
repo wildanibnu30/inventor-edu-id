@@ -11,29 +11,29 @@ export function Navbar() {
   const [user, setUser] = useState<any>(null);
   const [supabaseError, setSupabaseError] = useState(false);
 
-  useEffect(() => {
-    try {
-      const supabase = createClient();
-      supabase.auth.getUser().then(({ data: { user } }) => {
-        setUser(user);
-      }).catch(() => {
-        setSupabaseError(true);
-      });
+  const supabase = createClient();
 
-      supabase.auth.onAuthStateChange((_event, session) => {
-        setUser(session?.user ?? null);
-      });
-    } catch (error) {
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }: any) => {
+      setUser(user);
+    }).catch(() => {
       setSupabaseError(true);
-    }
-  }, []);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => {
+      subscription?.unsubscribe();
+    };
+  }, [supabase.auth]);
 
   const navLinks = [
     { href: "/", label: "Beranda" },
     { href: "/courses", label: "Kursus" },
     { href: "/exercises", label: "File Latihan" },
     { href: "/forum", label: "Forum" },
-    { href: "/lks-path", label: "Jalur LKS" },
   ];
 
   return (
@@ -50,11 +50,10 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  pathname === link.href
-                    ? "text-blue-600 bg-blue-50"
-                    : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-                }`}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${pathname === link.href
+                  ? "text-blue-600 bg-blue-50"
+                  : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                  }`}
               >
                 {link.label}
               </Link>

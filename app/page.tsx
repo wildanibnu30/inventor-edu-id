@@ -12,11 +12,11 @@ export default function Home() {
               Autodesk Inventor Indonesia
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Platform Pembelajaran Interaktif Gratis untuk SMK
+              Platform Pembelajaran Interaktif Gratis Autodesk Inventor
             </p>
             <p className="text-lg text-blue-200 max-w-2xl mx-auto">
-              Kurikulum terstruktur pertama di Indonesia yang 100% gratis. 
-              Dari dasar hingga spesialisasi, siapkan dirimu menjadi juara LKS Nasional.
+              Kurikulum terstruktur pertama di Indonesia yang 100% gratis.
+              Dari dasar hingga spesialisasi, siapkan dirimu untuk industri.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
               <Link
@@ -24,12 +24,6 @@ export default function Home() {
                 className="bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg"
               >
                 Mulai Belajar
-              </Link>
-              <Link
-                href="/lks-path"
-                className="bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-900 transition-colors border-2 border-blue-600"
-              >
-                Jalur LKS Nasional
               </Link>
             </div>
           </div>
@@ -49,9 +43,9 @@ export default function Home() {
               description="Dari dasar hingga spesialisasi, dengan roadmap yang jelas untuk setiap level"
             />
             <FeatureCard
-              icon={<Award className="w-8 h-8" />}
-              title="Jalur LKS Nasional"
-              description="Roadmap khusus untuk persiapan Lomba Kompetensi Siswa tingkat nasional"
+              icon={<TrendingUp className="w-8 h-8" />}
+              title="Kebutuhan Industri"
+              description="Kurikulum yang disesuaikan dengan kebutuhan industri manufaktur saat ini"
             />
             <FeatureCard
               icon={<FileText className="w-8 h-8" />}
@@ -61,7 +55,7 @@ export default function Home() {
             <FeatureCard
               icon={<MessageCircle className="w-8 h-8" />}
               title="Forum Diskusi"
-              description="Tanya jawab dengan komunitas dan mentor untuk LKS dan masalah teknis"
+              description="Tanya jawab dengan komunitas dan mentor untuk masalah teknis"
             />
           </div>
         </div>
@@ -73,7 +67,7 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <StatCard icon={<Users className="w-6 h-6 mx-auto mb-2" />} number="100%" label="Gratis Selamanya" />
             <StatCard icon={<BookOpen className="w-6 h-6 mx-auto mb-2" />} number="50+" label="Modul Pembelajaran" />
-            <StatCard icon={<Target className="w-6 h-6 mx-auto mb-2" />} number="LKS" label="Jalur Khusus" />
+            <StatCard icon={<Target className="w-6 h-6 mx-auto mb-2" />} number="A+" label="Standar Industri" />
             <StatCard icon={<Zap className="w-6 h-6 mx-auto mb-2" />} number="24/7" label="Akses Online" />
           </div>
         </div>
@@ -84,7 +78,7 @@ export default function Home() {
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-bold mb-4">Siap Memulai Perjalanan Belajarmu?</h2>
           <p className="text-xl text-blue-100 mb-8">
-            Bergabung dengan ratusan siswa SMK yang sudah memulai perjalanan mereka
+            Bergabung dengan ratusan pembelajar yang sudah memulai perjalanan mereka
           </p>
           <Link
             href="/courses"
@@ -117,5 +111,6 @@ function StatCard({ icon, number, label }: { icon: React.ReactNode; number: stri
     </div>
   );
 }
+
 
 

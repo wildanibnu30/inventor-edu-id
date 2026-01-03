@@ -1,10 +1,10 @@
 # Interactive Learning Hub - Autodesk Inventor Indonesia
 
-Platform pembelajaran interaktif gratis untuk Autodesk Inventor, dirancang khusus untuk siswa SMK di Indonesia.
+Platform pembelajaran interaktif gratis untuk Autodesk Inventor, dirancang untuk penggiat teknik di Indonesia.
 
 ## Fitur Utama
 
-- 📚 Kurikulum Terstruktur (Dasar, Menengah, Lanjutan, Spesialisasi, LKS)
+- 📚 Kurikulum Terstruktur (Dasar, Menengah, Lanjutan, Spesialisasi)
 - 📊 Progress Tracking dengan Visual Progress Bar
 - 📁 Repository File Latihan dengan Pencarian
 - 💬 Forum Q&A untuk Diskusi
@@ -51,6 +51,7 @@ npm run dev
 
 ## Kontribusi
 
-Platform ini dibuat untuk mendukung pendidikan teknik di Indonesia. Semua konten tersedia gratis untuk siswa SMK.
+Platform ini dibuat untuk mendukung pendidikan teknik di Indonesia. Semua konten tersedia gratis untuk semua pembelajar.
+
 
 

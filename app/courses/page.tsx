@@ -43,17 +43,6 @@ const modules = [
     estimatedTime: "50 jam",
     topics: ["Mold Design", "Machinery Design", "iLogic Automation", "Advanced Simulation"],
   },
-  {
-    id: "lks",
-    title: "Jalur LKS Nasional",
-    description: "Roadmap khusus persiapan Lomba Kompetensi Siswa tingkat nasional",
-    icon: <Award className="w-6 h-6" />,
-    color: "bg-red-500",
-    lessons: 25,
-    estimatedTime: "60 jam",
-    topics: ["LKS Pattern Analysis", "Time Management", "Best Practices", "Competition Tips"],
-    badge: "🏆",
-  },
 ];
 
 export default async function CoursesPage() {
@@ -71,9 +60,9 @@ export default async function CoursesPage() {
         .from("user_progress")
         .select("module_id, completed_lessons")
         .eq("user_id", user.id);
-      
+
       if (data) {
-        progress = data.reduce((acc, item) => {
+        progress = data.reduce((acc: Record<string, number>, item: any) => {
           acc[item.module_id] = item.completed_lessons || 0;
           return acc;
         }, {} as Record<string, number>);
@@ -90,7 +79,7 @@ export default async function CoursesPage() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">Kurikulum Pembelajaran</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Pilih level yang sesuai dengan kemampuanmu. Setiap modul dirancang untuk membangun 
+            Pilih level yang sesuai dengan kemampuanmu. Setiap modul dirancang untuk membangun
             fondasi yang kuat sebelum melanjutkan ke level berikutnya.
           </p>
         </div>
@@ -111,7 +100,6 @@ export default async function CoursesPage() {
                       {module.icon}
                       <h2 className="text-2xl font-bold">{module.title}</h2>
                     </div>
-                    {module.badge && <span className="text-2xl">{module.badge}</span>}
                   </div>
                   <p className="text-white/90 text-sm">{module.description}</p>
                 </div>

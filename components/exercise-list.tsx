@@ -38,17 +38,6 @@ const exercises = [
     description: "Desain box dengan sheet metal tools dan unfold.",
   },
   {
-    id: "4",
-    name: "LKS Pattern 2023",
-    level: "LKS",
-    category: "Assembly",
-    fileType: ".zip",
-    fileSize: "15 MB",
-    downloadLink: "https://drive.google.com/file/d/example/view",
-    videoLink: "https://youtube.com/watch?v=example",
-    description: "Soal latihan LKS Nasional 2023 dengan solusi lengkap.",
-  },
-  {
     id: "5",
     name: "Technical Drawing - Bracket",
     level: "Dasar",

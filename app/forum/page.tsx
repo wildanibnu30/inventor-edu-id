@@ -6,7 +6,7 @@ import { id } from "date-fns/locale";
 
 export default async function ForumPage() {
   const supabase = await createClient();
-  
+
   // In a real app, this would fetch from database
   // For now, we'll use placeholder data
   const posts = [
@@ -19,16 +19,6 @@ export default async function ForumPage() {
       views: 42,
       createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
       tags: ["assembly", "constraint", "help"],
-    },
-    {
-      id: "2",
-      title: "Tips untuk LKS Nasional 2024",
-      author: "Siti Nurhaliza",
-      category: "LKS",
-      replies: 12,
-      views: 128,
-      createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000), // 5 hours ago
-      tags: ["lks", "tips", "competition"],
     },
     {
       id: "3",
@@ -52,7 +42,7 @@ export default async function ForumPage() {
     },
   ];
 
-  const categories = ["Semua", "LKS", "Assembly", "Part", "Drawing", "Best Practices", "Help"];
+  const categories = ["Semua", "Assembly", "Part", "Drawing", "Best Practices", "Help"];
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
@@ -61,7 +51,7 @@ export default async function ForumPage() {
           <div>
             <h1 className="text-4xl font-bold text-gray-800 mb-4">Forum Diskusi</h1>
             <p className="text-xl text-gray-600">
-              Tanya jawab tentang Autodesk Inventor, LKS, dan masalah teknis
+              Tanya jawab tentang Autodesk Inventor dan masalah teknis
             </p>
           </div>
           <Link
@@ -139,5 +129,6 @@ export default async function ForumPage() {
     </div>
   );
 }
+
 
 

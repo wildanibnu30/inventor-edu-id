@@ -35,7 +35,6 @@ Inventor cocok untuk:
 - Desain mesin dan mekanik
 - Desain produk manufaktur
 - Desain komponen industri
-- Persiapan untuk LKS (Lomba Kompetensi Siswa)
 
 ## Langkah Selanjutnya
 

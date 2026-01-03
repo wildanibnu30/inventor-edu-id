@@ -119,3 +119,4 @@ CREATE POLICY "Users can update their own replies"
   USING (auth.uid() = user_id);
 
 
+

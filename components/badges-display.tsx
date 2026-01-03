@@ -25,12 +25,6 @@ const badgeDefinitions: Record<string, { name: string; icon: React.ReactNode; co
     color: "bg-orange-100 text-orange-700 border-orange-300",
     description: "Menyelesaikan Spesialisasi",
   },
-  lks_champion: {
-    name: "LKS Champion",
-    icon: <Trophy className="w-6 h-6" />,
-    color: "bg-red-100 text-red-700 border-red-300",
-    description: "Menyelesaikan Jalur LKS",
-  },
 };
 
 export function BadgesDisplay({ badges }: { badges: any[] }) {
@@ -45,11 +39,10 @@ export function BadgesDisplay({ badges }: { badges: any[] }) {
           return (
             <div
               key={badgeId}
-              className={`p-4 rounded-lg border-2 ${
-                isEarned
+              className={`p-4 rounded-lg border-2 ${isEarned
                   ? badge.color
                   : "bg-gray-50 text-gray-400 border-gray-200"
-              }`}
+                }`}
             >
               <div className="flex items-center space-x-3">
                 <div className={isEarned ? "text-current" : "text-gray-300"}>
@@ -72,5 +65,6 @@ export function BadgesDisplay({ badges }: { badges: any[] }) {
     </div>
   );
 }
+
 
 

@@ -7,11 +7,11 @@ import { Footer } from "@/components/footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Autodesk Inventor Indonesia - Kurikulum Gratis untuk SMK",
-  description: "Platform pembelajaran interaktif gratis untuk Autodesk Inventor. Kurikulum terstruktur dari dasar hingga spesialisasi, dirancang khusus untuk siswa SMK di Indonesia.",
-  keywords: "Autodesk Inventor, Belajar Inventor, Kurikulum Inventor, SMK, LKS, Inventor Indonesia",
+  title: "Autodesk Inventor Indonesia - Kurikulum Gratis & Terpadu",
+  description: "Platform pembelajaran interaktif gratis untuk Autodesk Inventor. Kurikulum terstruktur dari dasar hingga spesialisasi, dirancang untuk penggiat teknik di Indonesia.",
+  keywords: "Autodesk Inventor, Belajar Inventor, Kurikulum Inventor, Teknik, Inventor Indonesia",
   openGraph: {
-    title: "Autodesk Inventor Indonesia - Kurikulum Gratis untuk SMK",
+    title: "Autodesk Inventor Indonesia - Kurikulum Gratis & Terpadu",
     description: "Platform pembelajaran interaktif gratis untuk Autodesk Inventor",
     type: "website",
   },
@@ -32,5 +32,6 @@ export default function RootLayout({
     </html>
   );
 }
+
 
 

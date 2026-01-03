@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FileDown, Search, Filter, ExternalLink, Youtube } from "lucide-react";
 import { ExerciseList } from "@/components/exercise-list";
 
-const categories = ["Semua", "Dasar", "Menengah", "Lanjutan", "LKS", "Assembly", "Part", "Drawing"];
+const categories = ["Semua", "Dasar", "Menengah", "Lanjutan", "Assembly", "Part", "Drawing"];
 
 export default function ExercisesPage() {
   const [searchTerm, setSearchTerm] = useState("");

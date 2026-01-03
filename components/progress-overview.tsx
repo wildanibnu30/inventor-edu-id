@@ -6,7 +6,6 @@ const moduleInfo: Record<string, { title: string; totalLessons: number; color: s
   intermediate: { title: "Level Menengah", totalLessons: 15, color: "bg-green-500" },
   advanced: { title: "Level Lanjutan", totalLessons: 18, color: "bg-purple-500" },
   specialization: { title: "Spesialisasi", totalLessons: 20, color: "bg-orange-500" },
-  lks: { title: "Jalur LKS", totalLessons: 25, color: "bg-red-500" },
 };
 
 export function ProgressOverview({ progress }: { progress: any[] }) {
@@ -74,5 +73,6 @@ export function ProgressOverview({ progress }: { progress: any[] }) {
     </div>
   );
 }
+
 
 

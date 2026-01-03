@@ -72,21 +72,6 @@ const moduleData: Record<string, { title: string; lessons: Array<{ id: string; t
       { id: "12", title: "Project: Sistem Terintegrasi", duration: "5 jam" },
     ],
   },
-  lks: {
-    title: "Jalur LKS Nasional",
-    lessons: [
-      { id: "1", title: "Memahami Format LKS", duration: "1 jam" },
-      { id: "2", title: "Analisis Soal LKS", duration: "2 jam" },
-      { id: "3", title: "Time Management", duration: "1.5 jam" },
-      { id: "4", title: "Workflow Efisien", duration: "2 jam" },
-      { id: "5", title: "Best Practices", duration: "2 jam" },
-      { id: "6", title: "Latihan Soal LKS 1", duration: "3 jam" },
-      { id: "7", title: "Latihan Soal LKS 2", duration: "3 jam" },
-      { id: "8", title: "Latihan Soal LKS 3", duration: "3 jam" },
-      { id: "9", title: "Review dan Evaluasi", duration: "2 jam" },
-      { id: "10", title: "Tips dari Juara", duration: "1.5 jam" },
-    ],
-  },
 };
 
 export default async function ModulePage({
@@ -95,9 +80,9 @@ export default async function ModulePage({
   params: Promise<{ moduleId: string }>;
 }) {
   const { moduleId } = await params;
-  const module = moduleData[moduleId];
+  const currentModule = moduleData[moduleId];
 
-  if (!module) {
+  if (!currentModule) {
     notFound();
   }
 
@@ -114,7 +99,7 @@ export default async function ModulePage({
         .eq("user_id", user.id)
         .eq("module_id", moduleId)
         .single();
-      
+
       if (data?.completed_lesson_ids) {
         completedLessons = data.completed_lesson_ids;
       }
@@ -136,14 +121,14 @@ export default async function ModulePage({
         </Link>
 
         <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">{module.title}</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-4">{currentModule.title}</h1>
           <p className="text-gray-600">
-            Total {module.lessons.length} pelajaran. Selesaikan semua untuk mendapatkan badge!
+            Total {currentModule.lessons.length} pelajaran. Selesaikan semua untuk mendapatkan badge!
           </p>
         </div>
 
         <div className="space-y-4">
-          {module.lessons.map((lesson, index) => {
+          {currentModule.lessons.map((lesson, index) => {
             const isCompleted = completedLessons.includes(lesson.id);
             return (
               <Link

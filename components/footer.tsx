@@ -35,11 +35,6 @@ export function Footer() {
                   Forum
                 </Link>
               </li>
-              <li>
-                <Link href="/lks-path" className="hover:text-blue-400 transition-colors">
-                  Jalur LKS
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -68,5 +63,6 @@ export function Footer() {
     </footer>
   );
 }
+
 
 
