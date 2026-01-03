@@ -1,0 +1,32 @@
+===========================================
+CARA MEMBUAT FILE .env.local
+===========================================
+
+LANGKAH 1: Buat file baru di root folder project
+   Nama file: .env.local
+   (Pastikan ada titik di depan "env")
+
+LANGKAH 2: Copy dan paste isi berikut ke file .env.local:
+
+NEXT_PUBLIC_SUPABASE_URL=https://placeholder.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBsYWNlaG9sZGVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDUxOTIwMDAsImV4cCI6MTk2MDc2ODAwMH0.placeholder
+
+LANGKAH 3: Restart development server
+   - Tekan Ctrl+C untuk stop server
+   - Jalankan: npm run dev
+
+===========================================
+UNTUK FITUR LENGKAP (Opsional):
+===========================================
+
+1. Buat akun di https://supabase.com
+2. Buat project baru
+3. Buka Settings > API
+4. Copy Project URL dan anon public key
+5. Ganti nilai di .env.local dengan credentials asli
+
+Lihat file SETUP_ENV.md untuk panduan lengkap.
+
+===========================================
+
+
