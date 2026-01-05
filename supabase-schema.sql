@@ -118,5 +118,92 @@ CREATE POLICY "Users can update their own replies"
   ON forum_replies FOR UPDATE
   USING (auth.uid() = user_id);
 
+-- -----------------------------------------------------------------------------
+-- Expert checklist & access control schema
+-- -----------------------------------------------------------------------------
+
+-- Expert skills table
+CREATE TABLE IF NOT EXISTS expert_skills (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  category TEXT NOT NULL,
+  skill_name TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- User skills progress
+CREATE TABLE IF NOT EXISTS user_skills_progress (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  skill_id UUID NOT NULL REFERENCES expert_skills(id) ON DELETE CASCADE,
+  completed BOOLEAN DEFAULT FALSE,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(user_id, skill_id)
+);
+
+-- Access permissions & status enum
+CREATE TYPE IF NOT EXISTS access_status AS ENUM ('pending','approved','rejected');
+
+CREATE TABLE IF NOT EXISTS access_permissions (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  requester_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  target_user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  status access_status DEFAULT 'pending',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(requester_id, target_user_id)
+);
+
+-- Indexes and RLS enabling
+CREATE INDEX IF NOT EXISTS idx_user_skills_progress_user_id ON user_skills_progress(user_id);
+CREATE INDEX IF NOT EXISTS idx_user_skills_progress_skill_id ON user_skills_progress(skill_id);
+CREATE INDEX IF NOT EXISTS idx_access_permissions_requester_id ON access_permissions(requester_id);
+CREATE INDEX IF NOT EXISTS idx_access_permissions_target_user_id ON access_permissions(target_user_id);
+
+ALTER TABLE expert_skills ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_skills_progress ENABLE ROW LEVEL SECURITY;
+ALTER TABLE access_permissions ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies for user_skills_progress
+-- Users can view their own skills progress
+CREATE POLICY "Users can view their own skills progress"
+  ON user_skills_progress FOR SELECT
+  USING (auth.uid() = user_id);
+
+-- Admins (identified by specific email) can view all user skills progress
+CREATE POLICY "Admins can view all skills progress"
+  ON user_skills_progress FOR SELECT
+  USING (EXISTS (SELECT 1 FROM auth.users WHERE id = auth.uid() AND email = 'wildanibnujamil30@gmail.com'));
+
+-- Users can insert their own skills progress
+CREATE POLICY "Users can insert their own skills progress"
+  ON user_skills_progress FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+-- Users can update their own skills progress
+CREATE POLICY "Users can update their own skills progress"
+  ON user_skills_progress FOR UPDATE
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+
+-- RLS Policies for access_permissions
+-- Authenticated users can create access requests (requester must be the auth user)
+CREATE POLICY "Authenticated users can create access requests"
+  ON access_permissions FOR INSERT
+  WITH CHECK (auth.uid() = requester_id);
+
+-- Admin can update status on access_permissions
+CREATE POLICY "Only admin can update status"
+  ON access_permissions FOR UPDATE
+  USING (EXISTS (SELECT 1 FROM auth.users WHERE id = auth.uid() AND email = 'wildanibnujamil30@gmail.com'))
+  WITH CHECK (EXISTS (SELECT 1 FROM auth.users WHERE id = auth.uid() AND email = 'wildanibnujamil30@gmail.com'));
+
+-- Select policy: requester or target or admin can view access permissions
+CREATE POLICY "Requester or target or admin can view access permissions"
+  ON access_permissions FOR SELECT
+  USING (
+    auth.uid() = requester_id OR auth.uid() = target_user_id OR
+    EXISTS (SELECT 1 FROM auth.users WHERE id = auth.uid() AND email = 'wildanibnujamil30@gmail.com')
+  );
+
 
 

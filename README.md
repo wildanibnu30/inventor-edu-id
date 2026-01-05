@@ -53,5 +53,23 @@ npm run dev
 
 Platform ini dibuat untuk mendukung pendidikan teknik di Indonesia. Semua konten tersedia gratis untuk semua pembelajar.
 
+---
+
+## Inventor Expert Checklist & Access Requests (baru)
+
+- Tambahan tabel DB: `expert_skills`, `user_skills_progress`, `access_permissions` (lihat `supabase-schema.sql`).
+- Admin aplikasi ditentukan oleh email `wildanibnujamil30@gmail.com`. Admin dapat melihat semua progress dan menyetujui/menolak permintaan akses.
+- Cara setup singkat:
+  1. Jalankan SQL `supabase-schema.sql` di project Supabase.
+  2. Tambahkan `NEXT_PUBLIC_SUPABASE_URL` dan `NEXT_PUBLIC_SUPABASE_ANON_KEY` di `.env.local` atau di Vercel.
+  3. Masuk sebagai admin (email di atas) untuk melihat halaman Admin (`/dashboard/admin`).
+
+Fitur baru:
+- Halaman checklist pengguna: `/dashboard/skills` (login diperlukan)
+- Daftar pengguna & tombol "Minta Izin Lihat Progres": `/users`
+- API: `/api/access/request`, `/api/access/decision`, `/api/skills/mark`
+
+Catatan: Proyek tetap mendukung demo mode jika variabel lingkungan Supabase tidak dikonfigurasi (mock client).
+
 
 
